@@ -6,13 +6,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/rest/docker/hello")
+@RequestMapping("/test")
 public class HelloResource {
     @RequestMapping
     public String hello(){
 
-        return "hello world!!!-----";
-
+        return "this is simple test for spring boot";
 
     }
 
