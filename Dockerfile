@@ -1,4 +1,8 @@
-FROM openjdk:8
-ADD target/docker-spring-boot.jar docker-spring-boot.jar
-EXPOSE 8081
-ENTRYPOINT ["java", "-jar", "docker-spring-boot.jar"]
+
+FROM openjdk:8-jdk-alpine
+VOLUME /tmp
+ARG DEPENDENCY=target/dependency
+COPY ${DEPENDENCY}/BOOT-INF/lib /app/lib
+COPY ${DEPENDENCY}/META-INF /app/META-INF
+COPY ${DEPENDENCY}/BOOT-INF/classes /app
+ENTRYPOINT ["java","-cp","app:app/lib/*","com.techprimers.docker.dockerspringboot.DockerSpringBootApplication"]
